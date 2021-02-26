@@ -1,7 +1,7 @@
 package com.dca.crud.tienda.models.services.implement;
 
+import com.dca.crud.tienda.commons.models.entity.Proveedor;
 import com.dca.crud.tienda.models.dao.IProveedorDAO;
-import com.dca.crud.tienda.models.entity.Proveedor;
 import com.dca.crud.tienda.models.services.IProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,5 @@ public class ProveedorServiceImpl implements IProveedorService {
     @Override
     public void del(Long id) {
         dao.deleteById(id);
-
     }
 }

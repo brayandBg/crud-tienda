@@ -1,7 +1,7 @@
 package com.dca.crud.tienda.models.services.implement;
 
+import com.dca.crud.tienda.commons.models.entity.Producto;
 import com.dca.crud.tienda.models.dao.IProductoDAO;
-import com.dca.crud.tienda.models.entity.Producto;
 import com.dca.crud.tienda.models.services.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

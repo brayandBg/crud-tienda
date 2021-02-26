@@ -1,6 +1,6 @@
 package com.dca.crud.tienda.models.services;
 
-import com.dca.crud.tienda.models.entity.Producto;
+import com.dca.crud.tienda.commons.models.entity.Producto;
 
 import java.util.List;
 

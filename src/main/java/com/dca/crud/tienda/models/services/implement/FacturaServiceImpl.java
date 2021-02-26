@@ -1,7 +1,7 @@
 package com.dca.crud.tienda.models.services.implement;
 
+import com.dca.crud.tienda.commons.models.entity.Factura;
 import com.dca.crud.tienda.models.dao.IFacturaDAO;
-import com.dca.crud.tienda.models.entity.Factura;
 import com.dca.crud.tienda.models.services.IFacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.dca.crud.tienda.models.services;
 
-import com.dca.crud.tienda.models.entity.Proveedor;
+import com.dca.crud.tienda.commons.models.entity.Proveedor;
 
 import java.util.List;
 
