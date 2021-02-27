@@ -1,6 +1,9 @@
 package com.dca.crud.tienda.models.services.implement;
 
 import com.dca.crud.tienda.commons.models.entity.Factura;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceDeletedException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceFieldAlreadyExistException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceNotFoundException;
 import com.dca.crud.tienda.models.dao.IFacturaDAO;
 import com.dca.crud.tienda.models.services.IFacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ public class FacturaServiceImpl implements IFacturaService {
 
     @Autowired
     private IFacturaDAO dao;
+    private Factura f;
 
     @Override
     public List<Factura> findAll() {
@@ -20,18 +24,31 @@ public class FacturaServiceImpl implements IFacturaService {
     }
 
     @Override
-    public Factura findById(long id) {
-        return dao.findById(id).orElse(null);
+    public Factura findById(long id) throws MasterResourceNotFoundException {
+        f = dao.findById(id).orElse(null);
+        if (f == null){
+            throw new MasterResourceNotFoundException();
+        }
+        return f;
     }
 
     @Override
-    public Factura save(Factura f) {
-        return dao.save(f);
+    public Factura save(Factura f) throws MasterResourceFieldAlreadyExistException {
+        if(dao.findById(f.getId())!=null){
+            throw new MasterResourceFieldAlreadyExistException();
+        }
+        else {
+            return dao.save(f);
+        }
     }
 
     @Override
-    public void del(Long id) {
-        dao.deleteById(id);
+    public void del(Long id) throws MasterResourceDeletedException {
 
+        try {
+            dao.deleteById(id);
+        }catch (Exception e){
+            throw new MasterResourceDeletedException(e.getLocalizedMessage());
+        }
     }
 }
