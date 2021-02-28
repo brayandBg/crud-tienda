@@ -2,7 +2,6 @@ package com.dca.crud.tienda.models.services.implement;
 
 import com.dca.crud.tienda.commons.models.entity.Proveedor;
 import com.dca.crud.tienda.exception.exceptions.MasterResourceDeletedException;
-import com.dca.crud.tienda.exception.exceptions.MasterResourceFieldAlreadyExistException;
 import com.dca.crud.tienda.exception.exceptions.MasterResourceNotFoundException;
 import com.dca.crud.tienda.models.dao.IProveedorDAO;
 import com.dca.crud.tienda.models.services.IProveedorService;

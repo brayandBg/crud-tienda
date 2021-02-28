@@ -1,7 +1,7 @@
 package com.dca.crud.tienda.exception;
 
 
-import com.dca.nomina.traslado.fondos.exception.exceptions.*;
+import com.dca.crud.tienda.exception.exceptions.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.UnexpectedRollbackException;
@@ -19,7 +19,7 @@ import java.time.ZonedDateTime;
 public class ApiExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({MasterResourceNotFoundException.class, MasterResourceNotAssociateException.class})
+    @ExceptionHandler({MasterResourceNotFoundException.class})
     @ResponseBody
     public ApiException notFoundRequestException(HttpServletRequest request, Exception e) {
         HttpStatus notFound = HttpStatus.NOT_FOUND;
@@ -36,9 +36,9 @@ public class ApiExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Exception.class, MasterResourceFieldAlreadyExistException.class,
-            MasterResourceFieldInvalidException.class, MethodArgumentNotValidException.class,
-            DataIntegrityViolationException.class, MasterResourceConstraintException.class, UnexpectedRollbackException.class,
-            ApiRequestException.class, MasterResourceOlderException.class, MasterResourceDeletedException.class})
+            MethodArgumentNotValidException.class,
+            DataIntegrityViolationException.class, UnexpectedRollbackException.class,
+            ApiRequestException.class, MasterResourceDeletedException.class})
     @ResponseBody
     public ApiException badRequestException(HttpServletRequest request, Exception e) {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
@@ -54,7 +54,6 @@ public class ApiExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler({MasterResourceAccessDeniedException.class})
     @ResponseBody
     public ApiException forbiddenRequestException(HttpServletRequest request, Exception e) {
         HttpStatus forbidden = HttpStatus.FORBIDDEN;
