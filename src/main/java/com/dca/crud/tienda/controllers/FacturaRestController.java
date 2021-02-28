@@ -3,6 +3,9 @@ package com.dca.crud.tienda.controllers;
 
 
 import com.dca.crud.tienda.commons.models.entity.Factura;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceDeletedException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceFieldAlreadyExistException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceNotFoundException;
 import com.dca.crud.tienda.models.services.IFacturaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -47,7 +50,7 @@ public class FacturaRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Factura finById(@PathVariable Long id){
+    public Factura finById(@PathVariable Long id) throws MasterResourceNotFoundException {
         return factSer.findById(id);
     }
 
@@ -62,7 +65,7 @@ public class FacturaRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Factura crear(@RequestBody Factura p){
+    public Factura crear(@RequestBody Factura p) throws MasterResourceFieldAlreadyExistException {
         return factSer.save(p);
     }
 
@@ -77,7 +80,7 @@ public class FacturaRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Factura edit(@RequestBody Factura f, @PathVariable Long id){
+    public Factura edit(@RequestBody Factura f, @PathVariable Long id) throws MasterResourceNotFoundException, MasterResourceFieldAlreadyExistException {
         Factura fact = factSer.findById(id);
         fact.setId(f.getId());
         fact.setIdProd(f.getIdProd());
@@ -98,7 +101,7 @@ public class FacturaRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public void del(@PathVariable Long id){
+    public void del(@PathVariable Long id) throws MasterResourceDeletedException {
         factSer.del(id);
     }
 

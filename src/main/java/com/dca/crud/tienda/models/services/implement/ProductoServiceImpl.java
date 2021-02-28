@@ -33,13 +33,8 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public Producto save(Producto p) throws MasterResourceFieldAlreadyExistException {
-        if(dao.findById(p.getId())!=null){
-            throw new MasterResourceFieldAlreadyExistException();
-        }
-        else {
-            return dao.save(p);
-        }
+    public Producto save(Producto p) {
+        return dao.save(p);
     }
 
     @Override

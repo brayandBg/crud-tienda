@@ -33,13 +33,8 @@ public class FacturaServiceImpl implements IFacturaService {
     }
 
     @Override
-    public Factura save(Factura f) throws MasterResourceFieldAlreadyExistException {
-        if(dao.findById(f.getId())!=null){
-            throw new MasterResourceFieldAlreadyExistException();
-        }
-        else {
-            return dao.save(f);
-        }
+    public Factura save(Factura f) {
+        return dao.save(f);
     }
 
     @Override

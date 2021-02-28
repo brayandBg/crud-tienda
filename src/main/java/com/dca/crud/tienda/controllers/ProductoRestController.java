@@ -80,7 +80,7 @@ public class ProductoRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Producto edit(@RequestBody Producto p, @PathVariable Long id) throws MasterResourceFieldAlreadyExistException, MasterResourceNotFoundException {
+    public Producto edit(@RequestBody Producto p, @PathVariable Long id) throws MasterResourceNotFoundException, MasterResourceFieldAlreadyExistException {
 
         Producto prod = prodSer.findById(id);
         prod.setId(p.getId());

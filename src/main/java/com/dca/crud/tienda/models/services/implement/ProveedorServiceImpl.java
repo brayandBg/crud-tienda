@@ -33,13 +33,8 @@ public class ProveedorServiceImpl implements IProveedorService {
     }
 
     @Override
-    public Proveedor save(Proveedor p) throws MasterResourceFieldAlreadyExistException {
-        if(dao.findById(p.getId())!=null){
-            throw new MasterResourceFieldAlreadyExistException();
-        }
-        else {
+    public Proveedor save(Proveedor p) {
             return dao.save(p);
-        }
     }
 
     @Override
