@@ -4,6 +4,9 @@ package com.dca.crud.tienda.controllers;
 import com.dca.crud.tienda.commons.models.entity.Producto;
 import com.dca.crud.tienda.commons.models.entity.Producto;
 import com.dca.crud.tienda.commons.models.entity.Producto;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceDeletedException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceFieldAlreadyExistException;
+import com.dca.crud.tienda.exception.exceptions.MasterResourceNotFoundException;
 import com.dca.crud.tienda.models.services.IProductoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -47,7 +50,7 @@ public class ProductoRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Producto finById(@PathVariable Long id){
+    public Producto finById(@PathVariable Long id) throws MasterResourceNotFoundException {
         return prodSer.findById(id);
     }
 
@@ -62,7 +65,7 @@ public class ProductoRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Producto crear(@RequestBody Producto p){
+    public Producto crear(@RequestBody Producto p) throws MasterResourceFieldAlreadyExistException {
         return prodSer.save(p);
     }
 
@@ -77,7 +80,7 @@ public class ProductoRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public Producto edit(@RequestBody Producto p, @PathVariable Long id){
+    public Producto edit(@RequestBody Producto p, @PathVariable Long id) throws MasterResourceFieldAlreadyExistException, MasterResourceNotFoundException {
 
         Producto prod = prodSer.findById(id);
         prod.setId(p.getId());
@@ -100,7 +103,7 @@ public class ProductoRestController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    public void del(@PathVariable Long id){
+    public void del(@PathVariable Long id) throws MasterResourceDeletedException {
         prodSer.del(id);
     }
 
